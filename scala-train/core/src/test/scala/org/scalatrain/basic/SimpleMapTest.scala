@@ -12,30 +12,30 @@ class SimpleMapTest extends FunSuite with Matchers {
 
   test("Update should put a value to SimpleMap") {
     val sm = new SimpleMap
-//    sm("key") = "value"
+    sm("key") = "value"
     assert(sm.size == 1)
   }
 
   test("Apply should return value or null") {
     val sm = new SimpleMap
-    //sm("key") = "value"
-    //sm("key") should be("value")
-//    sm("don't exist") should be(null)
+    sm("key") = "value"
+    sm("key") should be("value")
+    sm("don't exist") should be(null)
     assert(sm.size == 1)
   }
 
   test("-= should remove key from SimpleMap") {
     val sm = new SimpleMap
-    //sm("key") = "value"
-    //sm -= "key"
-    //    sm("don't exist") should be(null)
+    sm("key") = "value"
+    sm -= "key"
+        sm("don't exist") should be(null)
     assert(sm.size == 0)
   }
 
   test("SimpleMap should be a function") {
     val sm = new SimpleMap
-    //sm("key") = "value"
+    sm("key") = "value"
     def hof(f: String => String) = f("key")
-//    hof(sm) should be ("value")
+    hof(sm) should be ("value")
   }
 }

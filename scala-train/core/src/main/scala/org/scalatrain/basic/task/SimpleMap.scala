@@ -2,9 +2,13 @@ package org.scalatrain.basic.task
 
 class SimpleMap {
 
+  val javaMap = new java.util.HashMap[String, String]()
+  def update(k: String, v: String): String = javaMap.put(k, v)
+  def apply(k: String): String = javaMap.get(k)
+  def -=(k: String): String = javaMap.remove(k)
+  def f(m: SimpleMap => SimpleMap): SimpleMap = new SimpleMap
 
-
-  def size: Int = ???
+  def size: Int = javaMap.size()
   def filterKey(p: String => Boolean): SimpleMap = ???
   def filter(p: ((String, String)) => Boolean): SimpleMap = ???
   def map(p: ((String, String)) => (String, String)): SimpleMap = ???
