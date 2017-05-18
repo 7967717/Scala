@@ -1,26 +1,28 @@
 package org.scalatrain.basic.task
 
 object SimpleMap {
-  def apply(args: (String, String)*): SimpleMap = {
-    val result = new SimpleMap
+  def apply[K, V](args: (K, V)*): SimpleMap[K, V] = {
+    val result = new SimpleMap[K, V]
     args.foreach{case (k, v) => result(k) = v }
     result
   }
 }
 
-class SimpleMap extends Function1[String, String]{
+class SimpleMap[K, V] extends Function1[K, V]{
 
-  val javaMap = new java.util.HashMap[String, String]()
+  val javaMap = new java.util.HashMap[K, V]()
 
-  def update(k: String, v: String): String = javaMap.put(k, v)
-  def apply(k: String): String = javaMap.get(k)
-  def -=(k: String): String = javaMap.remove(k)
-  def f(m: SimpleMap => SimpleMap): SimpleMap = new SimpleMap
+  override def toString(): String = javaMap.toString()
+
+  def update(k: K, v: V): V = javaMap.put(k, v)
+  def apply(k: K): V = javaMap.get(k)
+  def -=(k: K): V = javaMap.remove(k)
+  def f(m: SimpleMap[K, V] => SimpleMap[K, V]): SimpleMap[K, V] = new SimpleMap[K, V]
 
   def size: Int = javaMap.size()
 
-  def filterKey(p: String => Boolean): SimpleMap = {
-    val result = new SimpleMap
+  def filterKey(p: K => Boolean): SimpleMap[K, V] = {
+    val result = new SimpleMap[K, V]
     val iterator = javaMap.entrySet().iterator()
     while (iterator.hasNext) {
       val next = iterator.next()
@@ -31,8 +33,8 @@ class SimpleMap extends Function1[String, String]{
     result
   }
 
-  def filter(p: ((String, String)) => Boolean): SimpleMap = {
-    val result = new SimpleMap
+  def filter(p: ((K, V)) => Boolean): SimpleMap[K, V] = {
+    val result = new SimpleMap[K, V]
     val iterator = javaMap.entrySet().iterator()
     while (iterator.hasNext) {
       val next = iterator.next()
@@ -44,8 +46,8 @@ class SimpleMap extends Function1[String, String]{
     result
   }
 
-  def map(p: ((String, String)) => (String, String)): SimpleMap = {
-    val result = new SimpleMap
+  def map[K1, V1](p: ((K, V)) => (K1, V1)): SimpleMap[K1, V1] = {
+    val result = new SimpleMap[K1, V1]
     val iterator = javaMap.entrySet().iterator()
     while (iterator.hasNext) {
       val next = iterator.next()
@@ -55,8 +57,8 @@ class SimpleMap extends Function1[String, String]{
     result
   }
 
-  def flatMap(p: ((String, String)) => SimpleMap): SimpleMap = {
-    val result = new SimpleMap
+  def flatMap[K1, V1](p: ((K, V)) => SimpleMap[K1, V1]): SimpleMap[K1, V1] = {
+    val result = new SimpleMap[K1, V1]
     val iterator = javaMap.entrySet().iterator()
     while (iterator.hasNext) {
       val next = iterator.next()
@@ -66,7 +68,7 @@ class SimpleMap extends Function1[String, String]{
     result
   }
 
-  def fold(zero: String)(acc: (String, (String, String)) => String): String = {
+  def fold[A](zero: A)(acc: (A, (K, V)) => A): A = {
     var result = zero
     val iterator = javaMap.entrySet().iterator()
     while (iterator.hasNext) {
@@ -76,8 +78,8 @@ class SimpleMap extends Function1[String, String]{
     result
   }
 
-  def collect(pf: PartialFunction[(String, String), (String, String)]): SimpleMap = {
-    val result = new SimpleMap
+  def collect(pf: PartialFunction[(K, V), (K, V)]): SimpleMap[K, V] = {
+    val result = new SimpleMap[K, V]
     val iterator = javaMap.entrySet().iterator()
     while (iterator.hasNext) {
       val next = iterator.next()
@@ -90,7 +92,7 @@ class SimpleMap extends Function1[String, String]{
     result
   }
 
-  def get(k: String): Option[String] = {
+  def get(k: K): Option[V] = {
     Option(javaMap.get(k))
   }
 }

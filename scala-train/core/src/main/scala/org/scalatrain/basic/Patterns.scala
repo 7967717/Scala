@@ -243,7 +243,7 @@ object Patterns {
     def getUserRoleById(id: Int): Option[Role] = {
       getUserFromDb(id) map { user => user.role }
 
-      for (user <- getUserFromDb(id)) yield user.role
+      for (user <- getUserFromDb(id)) yield user.role //the same as above
     }
 
     def getUserById1(idOpt: Option[Int]): Option[User] = {
