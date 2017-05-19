@@ -29,5 +29,9 @@ class JsInterpreterTest extends FunSuite with Matchers {
 
 //    2 - "3" + "5"
     jsrun(JsBinOp("+", JsBinOp("-", JsNum(2), JsString("3")), JsString("5"))) should be("-15")
+
+    implicit def intToJsExpr(i: Int): JsExpr = JsNum(i)
+    implicit def stringToJsExpr(i: String): JsExpr = JsString(i)
+    jsrun(2.js - "3" + "5") should be("-15")
   }
 }
