@@ -1,6 +1,11 @@
 package org.scalatrain.basic.task
 
-abstract class JsExpr
+sealed trait JsExpr {
+  def js = this
+  def -(rhs: JsExpr) = JsBinOp("-", this, rhs)
+  def +(rhs: JsExpr) = JsBinOp("+", this, rhs)
+}
+
 trait JsLiteral extends JsExpr
 case class JsString(value: String) extends JsLiteral
 case class JsNum(value: Int) extends JsLiteral
