@@ -27,6 +27,30 @@ class TweetSetSuite extends FunSuite {
 
   def size(set: TweetSet): Int = asSet(set).size
 
+  test("print all") {
+    new TestSets {
+      println("--- set2")
+      set2.foreach(elem => println(elem))
+      println("--- set3")
+      set3.foreach(elem => println(elem))
+      println("--- set4c")
+      set4c.foreach(elem => println(elem))
+      println("--- set4d")
+      set4d.foreach(elem => println(elem))
+      println("--- set5")
+      set5.foreach(elem => println(elem))
+    }
+  }
+
+  test("print GoogleVsApple") {
+    new TestSets {
+      println("--- Google")
+      println(size(GoogleVsApple.googleTweets))
+      println("--- Apple")
+      println(size(GoogleVsApple.appleTweets))
+    }
+  }
+
   test("filter: on empty set") {
     new TestSets {
       assert(size(set1.filter(tw => tw.user == "a")) === 0)
@@ -36,6 +60,12 @@ class TweetSetSuite extends FunSuite {
   test("filter: a on set5") {
     new TestSets {
       assert(size(set5.filter(tw => tw.user == "a")) === 1)
+    }
+  }
+
+  test("filter: d on set5") {
+    new TestSets {
+      assert(size(set5.filter(tw => tw.user == "d")) === 1)
     }
   }
 
