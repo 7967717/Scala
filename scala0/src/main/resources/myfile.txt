@@ -1,0 +1,4 @@
+If you want to be able to peek at a character without consuming it
+(like istream::peek in C++ or a PushbackInputStreamReader in Java),
+call the buffered method on the source object.
+Then you can peek at the next input character with the head method without consuming it.
