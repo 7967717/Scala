@@ -270,6 +270,7 @@ object Syntax {
     def bar(s: Int)(implicit convertor: Int => Complex): Complex = convertor(s)
 
     bar(123)(int2Complex)
+    bar(123)(int2Complex)
 
     class Config { val url = "https://github.com/nau/jscala" }
 
