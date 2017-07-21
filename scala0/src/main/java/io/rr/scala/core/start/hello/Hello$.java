@@ -1,7 +1,4 @@
-package io.rr.scala.core
-
-import org.apache.spark.{SparkConf, SparkContext}
-;
+package io.rr.scala.core.start.hello;
 
 /**
   * @author roman on 3/5/17.
