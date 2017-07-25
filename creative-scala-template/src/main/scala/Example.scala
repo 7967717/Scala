@@ -11,6 +11,7 @@ object Example {
   val image = circle(10).fillColor(Color.red) on circle(20) on circle(30)
 
   def main(args: Array[String]): Unit = {
-    image.draw
+//    image.draw
+    circle(10).draw
   }
 }
