@@ -12,3 +12,8 @@ def ascending(n: Int): List[Int] =
 ascending(0)
 ascending(1)
 ascending(3)
+
+def double(list: List[Int] ): List[Int] =
+  list map (x => x * 2)
+double(List(1, 2, 3))
+double(List(4, 9, 16))
