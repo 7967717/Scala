@@ -1,4 +1,4 @@
-package io.rr.scala.core.start.examples
+package io.rr.scala.algorithms
 
 /**
   * @author roman on 7/27/17.
@@ -6,7 +6,7 @@ package io.rr.scala.core.start.examples
 object Equilibrium {
   def main(args: Array[String]): Unit = {
     def solution(a: Array[Int]): Int = {
-      // write your code in Scala 2.12
+
       def diffAbs(a: Int, b: Int): Int = if (a - b < 0) b - a else a - b
 
       def findDiff(list: List[Int], leftSum: Int, rightSum: Int, diff: Int): Int = {
