@@ -10,6 +10,7 @@ try {
 }
 val g = "ABC".sum.toInt
 val g1 = "ABC".sum
+val g11 = ('A' + 'B' + 'C').toChar
 println(g1)
 val g2 = g1.toInt
 val g3 = '?'.toInt
