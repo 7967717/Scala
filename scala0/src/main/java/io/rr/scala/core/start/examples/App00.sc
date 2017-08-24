@@ -7,3 +7,13 @@ println(myVar)
 println(myVal)
 println(myVar1)
 println(myVal1)
+
+val sqr = (n: Int) => n * n
+(n: Int, x: Int) => n * x
+
+sqr(2)
+sqr.apply(2)
+
+
+
+
