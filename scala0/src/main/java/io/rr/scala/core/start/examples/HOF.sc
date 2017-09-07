@@ -16,3 +16,5 @@ def sumTail(f:Int => Int)(a:Int, b:Int): Int = {
 sumTail(x => x * x * x)(1, 5)
 sumTail(x => x * x)(1, 5)
 sumTail(x => x * x)(3, 5)
+
+def a(a:Int, b:Int) = sumTail(x => x * x)(a, b)
