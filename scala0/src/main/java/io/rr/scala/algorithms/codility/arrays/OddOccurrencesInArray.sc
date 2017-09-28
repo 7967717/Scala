@@ -9,14 +9,15 @@ def solution(a: Array[Int]): Int = {
 }
 
 
-def solution3(A: Array[Int]): Int = {
-  val ar: Array[Int] = Array.ofDim[Int](A.toList.max + 1)
-  for (i <- ar.indices) println(i)
-  for (i <- A.indices) {
-    ar(A(i)) = ar(A(i)) + 1
-    println(i, " " + ar(A(i)))
+def solution3(a: Array[Int]): Int = {
+  val arNew: Array[Int] = Array.ofDim[Int](a.toList.max + 1)
+  for (i <- arNew.indices) println(arNew(i))
+  println()
+  for (i <- a.indices) {
+    arNew(a(i)) = arNew(a(i)) + 1
   }
-  for (i <- ar.indices) if (ar(i) % 2 == 1) return i
+  for (i <- arNew.indices) println(arNew(i))
+  for (i <- arNew.indices) if (arNew(i) % 2 == 1) return i
   -1
 }
 
