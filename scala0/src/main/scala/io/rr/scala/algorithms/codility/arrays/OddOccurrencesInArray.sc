@@ -1,4 +1,4 @@
-
+//88%
 def solution(a: Array[Int]): Int = {
   val arNew: Array[Int] = Array.ofDim[Int](a.toList.max + 1)
   for (i <- arNew.indices) println(arNew(i))

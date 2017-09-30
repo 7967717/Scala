@@ -1,3 +1,4 @@
+//100%
 def solution(n: Int): Int = {
   val b = n.toBinaryString.toList
   def loop (chars: List[Char], acc: Int, ints: List[Int]): List[Int] = {

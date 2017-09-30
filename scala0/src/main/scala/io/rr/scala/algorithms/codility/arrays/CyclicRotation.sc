@@ -1,3 +1,4 @@
+//100%
 def solution(array: Array[Int], k: Int): Array[Int] = {
   def rotate(a: Array[Int]): Array[Int] = {
     val arNew: Array[Int] = a.clone()
