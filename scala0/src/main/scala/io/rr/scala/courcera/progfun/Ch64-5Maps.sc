@@ -5,7 +5,8 @@ fruits.sortBy(_.head)
 fruits.sorted
 fruits.groupBy(_.head)
 
-val in = Source.fromFile("C:\\Users\\rrudenko\\IdeaProjects\\Scala\\scala0\\src\\main\\resources\\courcera\\linuxwords.txt")
+val url = Source.getClass.getClassLoader.getResource("\\courcera\\linuxwords.txt")
+val in = Source.fromURL(url)
 val words = in.getLines.toList.filter(word => word.forall(ch => ch.isLetter))
 
 val mnem = Map('2' -> "ABC", '3' -> "DEF", '4' -> "GHI", '5' -> "JKL",
