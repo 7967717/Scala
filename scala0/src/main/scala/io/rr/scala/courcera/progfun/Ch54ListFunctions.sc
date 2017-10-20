@@ -10,9 +10,12 @@ def squareList1(xs: List[Int]): List[Int] =
 squareList(List(1,2,3))
 squareList1(List(1,2,3))
 
+List(-1, 1, -2, 2).filter(_ > 0)
+List(-1, 1, -2, 2).filterNot(_ > 0)
 List(-1, 1, -2, 2).partition(_ > 0)
 List(1, 1, -2, -2).takeWhile(_ > 0)
 List(1, 1, -2, -2).dropWhile(_ > 0)
+List(1, 1, -2, -2).span(_ > 0)
 
 def pack[T](xs: List[T]): List[List[T]] = xs match {
   case Nil => Nil
@@ -20,7 +23,7 @@ def pack[T](xs: List[T]): List[List[T]] = xs match {
     val(first, rest) = xs.span(_ == x)
     first :: pack(rest)
 }
-pack(List(1,1,1,2,3,3,1))
+pack(List("a", "a", "a", "b", "c", "c", "a"))
 
 def encode[T](xs: List[T]): List[(T,Int)] = xs match {
   case Nil => Nil
@@ -28,8 +31,8 @@ def encode[T](xs: List[T]): List[(T,Int)] = xs match {
     val(first, rest) = xs.span(_ == x)
     (first.head, first.length) :: encode(rest)
 }
-pack(List(1,1,1,2,3,3,1)).map(x => (x.head, x.length))
-encode(List(1,1,1,2,3,3,1))
+pack(List("a", "a", "a", "b", "c", "c", "a")).map(x => (x.head, x.length))
+encode(List("a", "a", "a", "b", "c", "c", "a"))
 
 def mapFun[T, U](xs: List[T], f: T => U): List[U] =
   xs.foldRight(List[U]())((x, y) => f(x) :: y)
@@ -39,5 +42,9 @@ def lengthFun[T](xs: List[T]): Int =
   xs.foldRight(0)((x, y) => y + 1)
 lengthFun(List(1,1,1,2,3,3,1))
 
+List(1) ++ List(2)
 (List(1) ++ List(2)).reverse
+
+2 :: List(1)
 2 :: List(1).reverse
+(2 :: List(1)).reverse

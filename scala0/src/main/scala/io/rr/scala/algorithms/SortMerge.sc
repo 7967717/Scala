@@ -1,3 +1,4 @@
+//O(n * log n)
 def msort[T](xs: List[T])(implicit ord: Ordering[T]): List[T] = {
   val n = xs.length / 2
   if (n == 0) xs

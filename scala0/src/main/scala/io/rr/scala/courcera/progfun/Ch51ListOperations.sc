@@ -5,6 +5,12 @@ def init[T](xs: List[T]): List[T] = xs match {
 }
 init(List(1, 2, 3))
 
+def reverse[T](xs: List[T]): List[T] = xs match {
+  case List() => xs
+  case y :: ys => reverse(ys) ::: List(y)
+}
+reverse(List(1, 2, 3))
+
 def removeAt[T](n: Int, xs: List[T]) = {
   (xs take n) ::: (xs drop n + 1)
 }

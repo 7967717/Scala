@@ -1,3 +1,4 @@
+//O(n * n)
 def insert(x: Int, list: List[Int]): List[Int] = list match {
   case Nil => List(x)
   case h :: t => if (x <= h) x :: list else h :: insert(x, t)
