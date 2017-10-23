@@ -9,3 +9,6 @@ list.flatMap(g)
 List(1).flatMap(g) == g(1)
 list.flatMap(g) == list
 
+Some(1).flatMap(x => Some(x + 1))
+Some(1).flatMap(x => Some(x))
+
