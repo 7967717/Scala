@@ -2,7 +2,8 @@ import scala.io.Source
 import scala.sys.process
 
 //val source = Source.fromFile("myfile.txt", "UTF-8")
-val source = Source.fromFile("C:\\Users\\rrudenko\\IdeaProjects\\Scala\\scala0\\src\\main\\resources\\myfile.txt", "UTF-8")
+val url = Source.getClass.getClassLoader.getResource("\\myfile.txt")
+val source = Source.fromURL(url)
 
 // The first argument can be a string or a java.io.File
 // You can omit the encoding if you know that the file uses
