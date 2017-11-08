@@ -5,16 +5,16 @@ import scala.concurrent.Future
 import scala.util.Success
 
 val oneF = Future {
-  TimeUnit.SECONDS.sleep(3)
+  TimeUnit.SECONDS.sleep(1)
   println("Hello from " + Thread.currentThread().getName)
   1
 }
 oneF.isCompleted
-TimeUnit.SECONDS.sleep(4)
+TimeUnit.SECONDS.sleep(2)
 oneF.isCompleted
-//oneF.onComplete{
-//  println
-//}
+oneF.onComplete{
+  println
+}
 
 oneF.andThen {
   case Success(n) => println(n)

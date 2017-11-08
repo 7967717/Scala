@@ -12,20 +12,22 @@ import scala.util.Success
 object OneFuture {
   def main(args: Array[String]): Unit = {
     val oneF = Future{
-      TimeUnit.SECONDS.sleep(3)
+      TimeUnit.SECONDS.sleep(1)
       println("Hello from " + Thread.currentThread().getName)
       1
     }
-    oneF.isCompleted
+    println(oneF.isCompleted)
     TimeUnit.SECONDS.sleep(1)
-    oneF.isCompleted
-    //oneF.onComplete{
-    //  println
-    //}
+    println(oneF.isCompleted)
+    oneF.onComplete{
+      println
+    }
 
     oneF.andThen{
       case Success(n) => println(n)
     }.map(_ * 10).foreach(println)
+
+    TimeUnit.SECONDS.sleep(2)
   }
 
 }
