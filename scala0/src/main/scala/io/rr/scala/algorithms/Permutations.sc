@@ -15,3 +15,5 @@ def intPermutation(n: Int): Int = {
 1 == intPermutation(100)
 
 intPermutation(6)
+intPermutation(1213)
+
