@@ -1,45 +1,47 @@
-//def solution(n: Int, s: String): Int = {
-//  // write your code in Scala 2.12
-//
-//}
-
-var s = "1A 2F 1C"
-var b = s.split(" ").map(x => (x.charAt(0).toString.toInt, List(x.charAt(1).toString)))
-//b.map(x => (x._1.toString.toInt, x._2))
-def put(ar: Array[(Int, List[String])]) = {
-  val map = scala.collection.mutable.Map[Int, List[String]]()
-  for(elem <- ar) {
-    if(map.contains(elem._1)) {
-      val e = map(elem._1) ++ elem._2
-      map.put(elem._1, e)
-    } else map.put(elem._1, elem._2)
+def solution(n: Int, s: String): Int = {
+  if (s.isEmpty) n * 9
+  else {
+    var acc = 0
+    val map = stringToMap(s)
+    for (i <- 1 to n) {
+      if (map.contains(i)) acc = acc + getSeats(map(i)) else acc = acc + 9
+    }
+    acc
   }
-  map
 }
+solution(1, "")
+solution(1, "1J")
+solution(1, "1A 1J 1D")
+solution(3, "1A 2J 2E 3G")
 
-var map = put(b)
-
-var a = Array("A", "B", "C", "D", "E", "F", "G", "H", "J", "K")
-a.takeRight(3).contains("K")
-//a.dropRight(3).takeRight(4)
-//a.dropRight(7)
-//a.map(x => if(x == "D") "0" else x)
+def stringToMap(s: String) = {
+  s.split(" ").toList.groupBy(_.substring(0, 1))
+    .map(x => (x._1.toInt, x._2.map(_.substring(1))))
+}
+stringToMap("1A 2F 1C 2G 1K")
 
 def getSeats(list: List[String]) = {
   val a = Array("A", "B", "C", "D", "E", "F", "G", "H", "J", "K")
-  for(elem <- list) {
-    a.map(x => if(x == elem) "Z" else x)
+  for {e <- list
+       n <- a.indices} {
+    if (a(n) == e) a(n) = "X"
   }
-  val one = a.dropRight(7)
-  val two = a.dropRight(3).takeRight(4)
-  val three = a.takeRight(3)
+  val left = a.dropRight(7)
+  val center = a.dropRight(3).takeRight(4)
+  val right = a.takeRight(3)
 
-  val one1 = if(one.contains("Z")) 0 else 3
-//  val two1 = if(two(1) == "Z" || two(2) == "Z") 0
-//  else if(two.)
-  val three1 = if(three.contains("Z")) 0 else 3
-
+  val l = if (!left.contains("X")) 3 else 0
+  val cl = center.takeRight(3)
+  val cr = center.dropRight(1)
+  val c = if (!cl.contains("X") || !cr.contains("X")) 3 else 0
+  val r = if (!right.contains("X")) 3 else 0
+  l + c + r
 }
+getSeats(List("A", "K"))
+getSeats(List("A", "D", "K"))
+getSeats(List("A", "G", "K"))
+getSeats(List("A", "E", "K"))
+getSeats(List("A", "F", "K"))
 
 
 

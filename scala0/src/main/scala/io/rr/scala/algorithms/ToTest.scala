@@ -4,37 +4,53 @@ package io.rr.scala.algorithms
   * @author rrudenko on 27.09.2017.
   */
 object ToTest {
-  def main(args: Array[String]) {
-    //    def solution(a: Array[Int]): Int = {
-    //      //  val sorted = Sorting.quickSort(a)
-    //      def loop(arr: Array[Int], x: Int, y: Int): Int = {
-    //        if (x == y) loop(arr, arr(x + 1), arr(y + 1))
-    //        else y
-    //      }
-    //
-    //      loop(a, a(0), a(2))
-    //    }
-    //
-    //    solution(Array(9, 3, 9, 3, 9, 7, 9))
+  def main(args: Array[String]): Unit = {
+    import scala.collection.mutable
 
+    def solution(n: Int, s: String): Int = {
+      if (s.isEmpty) n * 9
+      else {
+        var acc = 0
+        val map = stringToMap(s)
+        for (i <- 1 to n) {
+          if (map.contains(i))
+            acc = acc + getSeats(map(i))
+            else acc = acc + 9
+        }
+        acc
+      }
+    }
+    println(solution(2, "2A"))
 
-    def contains(list: Seq[String], word: String): Boolean = {
-      val middle = list.length / 2
-      if (list.isEmpty) false
-      else if (word < list(middle)) {
-        val l = list.dropRight(middle)
-        contains(l, word)
+    def stringToMap(s: String) = {
+      val ar = s.split(" ").map(x => (x.charAt(0).toString.toInt,
+        List(x.charAt(1).toString)))
+      val map = mutable.Map[Int, List[String]]()
+      for (elem <- ar) {
+        if (map.contains(elem._1)) {
+          val e = map(elem._1) ++ elem._2
+          map.put(elem._1, e)
+        } else map.put(elem._1, elem._2)
       }
-      else if (word > list(middle)) {
-        val l = list.takeRight(middle)
-        contains(l, word)
-      }
-      else true
+      map
     }
 
-    val list = List("one", "two", "three", "four", "five")
-//    contains(list.sorted, "one")
-//    contains(list.sorted, "three")
-    contains(list.sorted, "ones")
+    def getSeats(list: List[String]) = {
+      val a = Array("A", "B", "C", "D", "E", "F", "G", "H", "J", "K")
+      for {e <- list
+           n <- a.indices} {
+        if (a(n) == e) a(n) = "X"
+      }
+      val left = a.dropRight(7)
+      val center = a.dropRight(3).takeRight(4)
+      val right = a.takeRight(3)
+
+      val l = if (!left.contains("X")) 3 else 0
+      val cl = center.takeRight(3)
+      val cr = center.dropRight(1)
+      val c = if (!cl.contains("X") || !cr.contains("X")) 3 else 0
+      val r = if (!right.contains("X")) 3 else 0
+      l + c + r
+    }
   }
 }
