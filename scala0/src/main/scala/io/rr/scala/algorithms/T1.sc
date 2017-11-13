@@ -1,18 +1,19 @@
 def solution(n: Int, s: String): Int = {
   if (s.isEmpty) n * 9
   else {
-    var acc = 0
     val map = stringToMap(s)
-    for (i <- 1 to n) {
-      if (map.contains(i)) acc = acc + getSeats(map(i)) else acc = acc + 9
+    def go(n: Int, acc: Int): Int = {
+      if(n == 0) acc
+      else if(map.contains(n)) go(n - 1, acc + getSeats(map(n)))
+      else go(n - 1, acc + 9)
     }
-    acc
+    go(n, 0)
   }
 }
-solution(1, "")
-solution(1, "1J")
-solution(1, "1A 1J 1D")
-solution(3, "1A 2J 2E 3G")
+9 == solution(1, "")
+6 == solution(1, "1J")
+3 == solution(1, "1A 1J 1D")
+18 == solution(3, "1A 2J 2E 3G")
 
 def stringToMap(s: String) = {
   s.split(" ").toList.groupBy(_.substring(0, 1))
