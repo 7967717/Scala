@@ -10,10 +10,10 @@ init(List(1, 2, 3, 4))
 
 def dropWhile[A](as: List[A])(f: A => Boolean): List[A] =
   as match {
-    case h:: t if f(h) => dropWhile(t)(f)
+    case h :: t if f(h) => dropWhile(t)(f)
     case _ => as
   }
-val xs: List[Int] = List(1,2,3,4,5)
+val xs: List[Int] = List(1, 2, 3, 4, 5)
 val ex1 = dropWhile(xs)(x => x < 4)
 
 //list length
@@ -42,11 +42,11 @@ map(xs)(_ + 1)
 map1(xs)(_ + 1)
 
 //list flatmap
-def flatMap[A,B](as: List[A])(f: A => List[B]): List[B] = {
+def flatMap[A, B](as: List[A])(f: A => List[B]): List[B] = {
   as.foldRight(List[B]())((ys, acc) => f(ys) ++ acc)
 }
-List(1,2,3).flatMap(i => List(i,i))
-flatMap(List(1,2,3))(i => List(i,i))
+List(1, 2, 3).flatMap(i => List(i, i))
+flatMap(List(1, 2, 3))(i => List(i, i))
 
 //listfilter
 def filter[A](as: List[A])(f: A => Boolean): List[A] = {
@@ -60,7 +60,7 @@ filter(xs)(_ > 3)
 filter1(xs)(_ > 3)
 
 //list zipWith
-def zipWith[A,B,C](as: List[A], bs: List[B])(f: (A, B) => C): List[C] = (as, bs) match {
+def zipWith[A, B, C](as: List[A], bs: List[B])(f: (A, B) => C): List[C] = (as, bs) match {
   case (_, Nil) => Nil
   case (Nil, _) => Nil
   case (a :: ax, b :: bx) => f(a, b) :: zipWith(ax, bx)(f)
@@ -69,12 +69,12 @@ def zipWith[A,B,C](as: List[A], bs: List[B])(f: (A, B) => C): List[C] = (as, bs)
 zipWith(xs, xs)(_ + _)
 
 //whether a List contains another List as a subsequence
-def hasSubsequence[A](list: List[A], sub: List[A]): Boolean  = list match {
+def hasSubsequence[A](list: List[A], sub: List[A]): Boolean = list match {
   case Nil => sub == Nil
   case _ if startsWith(list, sub) => true
   case _ :: ls => hasSubsequence(ls, sub)
 }
-def startsWith[A](list: List[A], sub: List[A]): Boolean  = (list, sub) match {
+def startsWith[A](list: List[A], sub: List[A]): Boolean = (list, sub) match {
   case (_, Nil) => true
   case (a :: ax, b :: bx) if a == b => startsWith(ax, bx)
   case _ => false
