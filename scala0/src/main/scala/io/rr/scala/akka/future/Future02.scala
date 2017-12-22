@@ -1,4 +1,4 @@
-package io.rr.scala.future
+package io.rr.scala.akka.future
 
 import java.util.concurrent.TimeUnit
 import scala.concurrent.ExecutionContext.Implicits.global
@@ -8,7 +8,7 @@ import scala.util.{Failure, Success}
 /**
   * @author rrudenko on 08.11.2017.
   */
-object FutureOneMore {
+object Future02 {
   def main(args: Array[String]): Unit = {
     val fut = Future { TimeUnit.SECONDS.sleep(1); 21 + 21 }
     println(fut.value)

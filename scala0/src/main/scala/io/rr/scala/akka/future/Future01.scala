@@ -1,4 +1,4 @@
-package io.rr.scala.future
+package io.rr.scala.akka.future
 
 import java.util.concurrent.TimeUnit
 
@@ -9,7 +9,7 @@ import scala.util.Success
 /**
   * @author rrudenko on 12.10.2017.
   */
-object OneFuture {
+object Future01 {
   def main(args: Array[String]): Unit = {
     val oneF = Future{
       TimeUnit.SECONDS.sleep(1)
@@ -20,6 +20,7 @@ object OneFuture {
     TimeUnit.SECONDS.sleep(1)
     println(oneF.isCompleted)
     oneF.onComplete{
+      println("---------------------")
       println
     }
 
