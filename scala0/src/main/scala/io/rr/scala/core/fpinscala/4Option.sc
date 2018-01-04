@@ -22,4 +22,16 @@ def filter[A](opt: Option[A], f: A => Boolean): Option[A] = opt match {
   case _ => None
 }
 
+def plus(x: Int): Option[Int] = Some(x + x)
+map(Some(1), x => plus(x))
+flatMap(Some(1), x => plus(x))
 
+
+def sequence[A](a: List[Option[A]]): Option[List[A]] = a match {
+  case Nil => Some(Nil)
+  case h :: t => h.flatMap(hh => sequence(t).map(hh :: _))
+}
+sequence(List(Some(1), Some(2), None))
+
+1+2+3+4+5
+5*6/2
