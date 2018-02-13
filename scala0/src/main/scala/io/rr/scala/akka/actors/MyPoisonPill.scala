@@ -16,7 +16,7 @@ object MyPoisonPill extends App {
   system.terminate
 }
 
-class MyActor extends Actor {
+class MyActor1 extends Actor {
   def receive = {
     case s:String => println("Message Received: " + s)
     case _ => println("MyActor got an unknown message")
