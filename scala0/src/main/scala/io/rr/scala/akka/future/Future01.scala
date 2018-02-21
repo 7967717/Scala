@@ -13,7 +13,7 @@ object Future01 {
   def main(args: Array[String]): Unit = {
     val oneF = Future{
       TimeUnit.SECONDS.sleep(1)
-      println("Hello from " + Thread.currentThread().getName)
+      println("Hello from future " + Thread.currentThread().getName)
       1
     }
     println(oneF.isCompleted)
@@ -21,11 +21,12 @@ object Future01 {
     println(oneF.isCompleted)
     oneF.onComplete{
       println("---------------------")
+      print("onComplete ")
       println
     }
 
     oneF.andThen{
-      case Success(n) => println(n)
+      case Success(n) => println("n - " + n)
     }.map(_ * 10).foreach(println)
 
     TimeUnit.SECONDS.sleep(2)
