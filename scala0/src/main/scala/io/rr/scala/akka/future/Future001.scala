@@ -14,7 +14,8 @@ object Future001 extends App {
 
 //  blocking operation
   println("Waiting one second to start")
-  private val str: String = Await.result(start, 1 seconds)
+  private val duration = 1 seconds
+  private val str: String = Await.result(start, duration)
   println(str)
 
   def printContent[T](fut: Try[T]) = fut match {
