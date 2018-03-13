@@ -18,7 +18,7 @@ object Client {
     // needed for the future flatMap/onComplete in the end
     implicit val executionContext = system.dispatcher
 
-    val request = HttpRequest(uri = "http://localhost:8080/api/individuals/0f51a702-0db7-4ca2-ab6f-d3710d8d7de7")
+    val request = HttpRequest(uri = "http://52.50.178.165:8080/api/individuals/juanita")
 
     val responseFuture: Future[HttpResponse] = Http().singleRequest(request)
 
