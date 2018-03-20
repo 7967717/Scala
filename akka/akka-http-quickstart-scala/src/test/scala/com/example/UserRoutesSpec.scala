@@ -1,7 +1,6 @@
 package com.example
 
-//#user-routes-spec
-//#test-top
+
 import akka.actor.ActorRef
 import akka.http.scaladsl.marshalling.Marshal
 import akka.http.scaladsl.model._
