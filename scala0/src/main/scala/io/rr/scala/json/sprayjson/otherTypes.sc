@@ -17,5 +17,5 @@ object MyJsonProtocol extends DefaultJsonProtocol {
 
 import MyJsonProtocol._
 
-val json = new Color("CadetBlue", 95, 158, 160).toJson
+val json = Color("CadetBlue", 95, 158, 160).toJson
 val color = json.convertTo[Color]
