@@ -9,7 +9,6 @@ import akka.http.scaladsl.server.Directives._
 import akka.http.scaladsl.server.Route
 import akka.http.scaladsl.server.directives.MethodDirectives.{delete, get, post}
 import akka.http.scaladsl.server.directives.RouteDirectives.complete
-import akka.http.scaladsl.server.directives.PathDirectives.path
 
 import akka.util.Timeout
 import io.rr.tokafka.MessagesActor._
@@ -44,7 +43,7 @@ trait Routes extends JsonSupport {
                 val messageForwarded: Future[ActionPerformed] =
                   (messagesActor ? MessageToKafka(message)).mapTo[ActionPerformed]
                 onSuccess(messageForwarded) { forwarded =>
-                  log.info("Message forwarded [{}]: {}", message.message, forwarded.description)
+                  log.info(forwarded.description)
                   complete((StatusCodes.Accepted, forwarded))
                 }
               }
