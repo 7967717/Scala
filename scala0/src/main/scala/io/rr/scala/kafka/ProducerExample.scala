@@ -24,7 +24,7 @@ trait ProducerExample {
   // #producer
   // #settings
   val producerSettings = ProducerSettings(system, new ByteArraySerializer, new StringSerializer)
-    .withBootstrapServers("172.17.0.3:9092")
+    .withBootstrapServers("localhost:9092")
   // #settings
   val kafkaProducer = producerSettings.createKafkaProducer()
   // #producer
@@ -45,8 +45,9 @@ trait ProducerExample {
 object PlainSinkExample extends ProducerExample {
   def main(args: Array[String]): Unit = {
     // #plainSink
-    val done = Source(1 to 100)
+    val done = Source(1 to 10)
       .map(_.toString)
+      .map(x => s"Message #$x")
       .map { elem =>
         new ProducerRecord[Array[Byte], String]("test", elem)
       }
