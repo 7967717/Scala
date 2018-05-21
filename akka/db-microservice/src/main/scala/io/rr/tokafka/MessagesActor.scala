@@ -26,7 +26,7 @@ class MessagesActor extends Actor with ActorLogging {
     case MessageToKafka(message) =>
       messages += message
       sink.forward("test", message.message)
-      sender() ! ActionPerformed(s"Message '${message.message}' was forwarded to Kafka.")
+      sender() ! ActionPerformed(s"Message '${message.message}' was forwarded to Kafka.\n")
   }
 }
 
