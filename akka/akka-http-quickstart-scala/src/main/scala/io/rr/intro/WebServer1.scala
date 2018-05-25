@@ -1,4 +1,4 @@
-package com.intro
+package io.rr.intro
 
 import akka.actor.ActorSystem
 import akka.http.scaladsl.Http
