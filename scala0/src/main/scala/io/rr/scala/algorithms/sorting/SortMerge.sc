@@ -11,7 +11,7 @@ def msort[T](xs: List[T])(implicit ord: Ordering[T]): List[T] = {
           if (ord.lt(x, y)) x :: merge(fs, ys) else y :: merge(xs, sn)
       }
 
-    val (fst, snd) = xs splitAt n
+    val (fst, snd) = xs.splitAt(n)
     merge(msort(fst), msort(snd))
   }
 }
