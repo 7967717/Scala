@@ -33,5 +33,4 @@ def sequence[A](a: List[Option[A]]): Option[List[A]] = a match {
 }
 sequence(List(Some(1), Some(2), None))
 
-1+2+3+4+5
-5*6/2
+

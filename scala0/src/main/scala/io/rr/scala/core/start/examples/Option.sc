@@ -17,3 +17,10 @@ myMap.get("a").map("Val " + _).getOrElse("No val")
 myMap.get("a").getOrElse("No val")
 myMap.getOrElse("a", "No val") //the same
 myMap.getOrElse("c", "No val")
+
+
+val o1 = Some("!!!")
+val o2: Option[Nothing] = None
+
+o1.orNull
+o2.orNull
