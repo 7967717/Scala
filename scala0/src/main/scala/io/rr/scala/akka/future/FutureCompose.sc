@@ -29,24 +29,24 @@ import scala.concurrent.duration._
 
 val as = ActorSystem()
 
-//val x = after(2.seconds, as.scheduler, global, Future.successful(1)).flatMap { _ =>
-//  Future {
-//    // long operation that _starts_ after the delayed future completes
-//    1
-//  }
-//}
+val x = after(2.seconds, as.scheduler, global, Future.successful(1)).flatMap { _ =>
+  Future {
+    // long operation that _starts_ after the delayed future completes
+    1
+  }
+}
 
-//def networkRequestWithRetries1()(implicit as: ActorSystem): Future[String] = {
-//  networkRequest().recoverWith {
-//    case NetworkException =>
-//      println("retrying")
-//      after(2.seconds, as.scheduler, global, Future.successful(1)).flatMap { _ =>
-//        networkRequestWithRetries1()
-//      }
-//    case t: Throwable => throw t
-//  }
-//}
-//
+def networkRequestWithRetries1()(implicit as: ActorSystem): Future[String] = {
+  networkRequest().recoverWith {
+    case NetworkException =>
+      println("retrying")
+      after(2.seconds, as.scheduler, global, Future.successful(1)).flatMap { _ =>
+        networkRequestWithRetries1()
+      }
+    case t: Throwable => throw t
+  }
+}
 
-//
-//networkRequestWithRetries1()
+
+
+networkRequestWithRetries1()(as)
