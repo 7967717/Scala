@@ -20,3 +20,5 @@ l.head :: (2 :: Nil)
 l.head :: (2 :: Nil) :: Nil
 l.head :: (2 :: Nil :: Nil :: Nil) :: Nil
 l.head
+
+"1".toInt
