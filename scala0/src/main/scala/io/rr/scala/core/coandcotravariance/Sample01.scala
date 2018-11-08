@@ -1,6 +1,6 @@
 package io.rr.scala.core.coandcotravariance
 
-class Sample01 {
+object Sample01 extends App{
 
   sealed trait Container[A] {
     def accessor: A
@@ -8,28 +8,36 @@ class Sample01 {
   }
 
   case class InvariantContainer[A](var a: A) {
-      def accessor(): A = a
-      def mutator(a0: A): Unit = {
-        a = a0
-      }
-}
+    def accessor(): A = {
+      println(a);
+      a
+    }
+
+    def mutator(a0: A): Unit = {
+      println(a0)
+      a = a0
+    }
+  }
 //  CovariantContainer
   case class Producer[+A](a: A) {
-    def produce(): A = a
+    def produce(): A = {
+      println(a)
+      a
+    }
 //    def mutator(a0: A): Unit = {
 //      a = a0
 //    }
   }
 //  ContravariantContainer
-  case class Consumer[-A](var a: A) {
+  case class Consumer[-A]() {
 //    def accessor():A = a
     def consume(a0: A): Unit = {
-      a = a0
+      println(a0)
     }
   }
 
-  class Car
-  class Subaru extends Car
+  class Car()
+  class Subaru() extends Car
 
   // works
   val inv: InvariantContainer[Subaru] = InvariantContainer[Subaru](new Subaru())
@@ -40,14 +48,13 @@ class Sample01 {
 //  val inv3: InvariantContainer[Car] = InvariantContainer[Subaru]
 
   // works
-  val cov: Producer[Car] = Producer[Car](new Subaru())
+  val cov: Producer[Car] = Producer[Subaru](new Subaru())
   private val car1: Car = cov.produce()
   // doesn't work
 //  val inv4: InvariantContainer[Subaru] = InvariantContainer[Car]
 
   // works
-  val con: Consumer[Car] = Consumer[Car](new Car())
-  con.consume(new Car())
+  val con: Consumer[Subaru] = Consumer[Car]()
   con.consume(new Subaru())
   // doesn't work
 //  val con4: ContravariantContainer[Car] = ContravariantContainer[Subaru]

@@ -1,4 +1,4 @@
-package io.rr.scala.core.cats
+package io.rr.scala.cats
 
 import cats.effect.IO
 

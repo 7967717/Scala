@@ -1,4 +1,4 @@
-package io.rr.scala.core.fpinscala
+package io.rr.scala.trainings.fpinscala
 
 /**
   * @author rrudenko on 15.11.2017.

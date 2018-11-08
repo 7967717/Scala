@@ -1,4 +1,4 @@
-package io.rr.scala.courcera.progfun
+package io.rr.scala.trainings.courcera.progfun
 
 /**
   * @author rrudenko on 07.07.2017.
