@@ -1,3 +1,5 @@
+import scala.concurrent.Future
+
 val a = "Test"
 val b = new String("Test")
 a == b
