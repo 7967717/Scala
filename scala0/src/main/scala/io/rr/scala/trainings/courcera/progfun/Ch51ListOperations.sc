@@ -7,7 +7,7 @@ init(List(1, 2, 3))
 
 def reverse[T](xs: List[T]): List[T] = xs match {
   case List() => xs
-  case y :: ys => reverse(ys) ::: List(y)
+  case y :: ys => reverse(ys) ++ List(y)
 }
 reverse(List(1, 2, 3))
 

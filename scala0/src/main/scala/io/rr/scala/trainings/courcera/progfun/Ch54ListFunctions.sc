@@ -19,7 +19,7 @@ List(1, 1, -2, -2).span(_ > 0)
 
 def pack[T](xs: List[T]): List[List[T]] = xs match {
   case Nil => Nil
-  case x :: xs1 =>
+  case x :: _ =>
     val(first, rest) = xs.span(_ == x)
     first :: pack(rest)
 }
@@ -27,7 +27,7 @@ pack(List("a", "a", "a", "b", "c", "c", "a"))
 
 def encode[T](xs: List[T]): List[(T,Int)] = xs match {
   case Nil => Nil
-  case x :: xs1 =>
+  case x :: _ =>
     val(first, rest) = xs.span(_ == x)
     (first.head, first.length) :: encode(rest)
 }
@@ -42,9 +42,3 @@ def lengthFun[T](xs: List[T]): Int =
   xs.foldRight(0)((x, y) => y + 1)
 lengthFun(List(1,1,1,2,3,3,1))
 
-List(1) ++ List(2)
-(List(1) ++ List(2)).reverse
-
-2 :: List(1)
-2 :: List(1).reverse
-(2 :: List(1)).reverse

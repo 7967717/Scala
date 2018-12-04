@@ -5,7 +5,7 @@ fruits.sortBy(_.head)
 fruits.sorted
 fruits.groupBy(_.head)
 
-val url = Source.getClass.getClassLoader.getResource("\\courcera\\linuxwords.txt")
+val url = Source.getClass.getClassLoader.getResource("courcera/linuxwords.txt")
 val in = Source.fromURL(url)
 val words = in.getLines.toList.filter(word => word.forall(ch => ch.isLetter))
 
