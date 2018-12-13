@@ -49,7 +49,7 @@ object PlainSinkExample extends ProducerExample {
       .map(_.toString)
       .map(x => s"Message #$x")
       .map { elem =>
-        new ProducerRecord[Array[Byte], String]("test0", elem)
+        new ProducerRecord[Array[Byte], String]("test", elem)
       }
       .runWith(Producer.plainSink(producerSettings))
     // #plainSink

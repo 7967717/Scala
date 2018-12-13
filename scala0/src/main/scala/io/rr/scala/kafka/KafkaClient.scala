@@ -21,12 +21,7 @@ object KafkaClient {
     } catch {
       case e: Exception => println(s"Exception $e.getMessage")
       case e: Throwable => println(s"Throwable $e.getMessage")
-    } finally {
-      println("in finally")
     }
-
-
-    println("---------")
     println("---------")
 
   }

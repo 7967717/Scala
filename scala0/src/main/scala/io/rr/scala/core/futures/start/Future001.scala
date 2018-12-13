@@ -1,4 +1,4 @@
-package io.rr.scala.akka.future
+package io.rr.scala.core.futures.start
 
 import scala.concurrent.{Await, ExecutionContext, Future}
 import scala.util.{Failure, Success, Try}

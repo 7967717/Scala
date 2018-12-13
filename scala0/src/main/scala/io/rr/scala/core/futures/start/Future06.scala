@@ -1,7 +1,6 @@
-package io.rr.scala.akka.future
+package io.rr.scala.core.futures.start
 
-import scala.concurrent.{ExecutionContext, Future}
-import scala.concurrent.blocking
+import scala.concurrent.{ExecutionContext, Future, blocking}
 
 object Future06 extends App {
   implicit val ec = ExecutionContext.global

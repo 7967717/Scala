@@ -1,4 +1,4 @@
-package io.rr.scala.akka.future
+package io.rr.scala.core.futures.start
 
 import java.util.concurrent.TimeUnit
 import scala.concurrent.{Await, Future}

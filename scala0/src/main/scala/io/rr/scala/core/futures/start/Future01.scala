@@ -1,7 +1,6 @@
-package io.rr.scala.akka.future
+package io.rr.scala.core.futures.start
 
 import java.util.concurrent.TimeUnit
-
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 import scala.util.Success

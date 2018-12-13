@@ -1,22 +1,21 @@
-package io.rr.scala.akka.future
+package io.rr.scala.core.futures.start
 
 import java.util.concurrent.TimeUnit
 import scala.concurrent.ExecutionContext.Implicits.global
-import scala.util.Random
-import scala.util.{Failure, Success}
 import scala.concurrent.Future
+import scala.util.Random
 
-object Future03 extends App {
-  println("starting calculation ...")
+object Future04 extends App{
   val f = Future {
     TimeUnit.MILLISECONDS.sleep(Random.nextInt(500))
-    42
+    if (Random.nextInt(500) > 250) throw new Exception("Yikes!") else 42
   }
-  println("before onComplete")
-  f.onComplete {
-    case Success(value) => println(s"Got the callback, meaning = $value")
-    case Failure(e) => e.printStackTrace
-  }
+  f.onSuccess {
+      case result => println(s"Success: $result")
+    }
+  f.onFailure {
+      case t => println(s"Exception: ${t.getMessage}")
+    }
   // do the rest of your work
   println("A ..."); TimeUnit.MILLISECONDS.sleep(100)
   println("B ..."); TimeUnit.MILLISECONDS.sleep(100)
@@ -24,5 +23,4 @@ object Future03 extends App {
   println("D ..."); TimeUnit.MILLISECONDS.sleep(100)
   println("E ..."); TimeUnit.MILLISECONDS.sleep(100)
   println("F ..."); TimeUnit.MILLISECONDS.sleep(100)
-  TimeUnit.MILLISECONDS.sleep(2000)
 }
