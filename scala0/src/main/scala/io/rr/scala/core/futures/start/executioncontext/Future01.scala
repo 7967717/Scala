@@ -1,10 +1,8 @@
-package io.rr.scala.akka.future.executioncontext
+package io.rr.scala.core.futures.start.executioncontext
 
-import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration.Duration
 import scala.concurrent.{Await, Future}
-import scala.concurrent.blocking
-
+import scala.concurrent.ExecutionContext.Implicits.global
 
 object Future01 {
   def startTask(number: Int): Future[Unit] = Future {
