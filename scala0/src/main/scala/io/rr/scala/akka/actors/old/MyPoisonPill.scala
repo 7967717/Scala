@@ -5,7 +5,7 @@ import akka.actor._
 
 object MyPoisonPill extends App {
   val system = ActorSystem("PoisonPillTest")
-  val actor = system.actorOf(Props[MyActor], name = "test")
+  val actor = system.actorOf(Props[MyActor1], name = "test")
   // a simple message
   actor ! "before PoisonPill"
   // the PoisonPill
