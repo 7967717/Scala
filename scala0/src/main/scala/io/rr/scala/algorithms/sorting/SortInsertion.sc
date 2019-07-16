@@ -10,3 +10,6 @@ def isort(list: List[Int]): List[Int] = list match {
 }
 
 isort(List(2, 1, 4, 3))
+isort(List(2, 1))
+isort(List(2))
+isort(List())

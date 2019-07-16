@@ -1,6 +1,8 @@
+import scala.annotation.tailrec
+
 def init[T](xs: List[T]): List[T] = xs match {
   case List() => throw new Error("init of empty list")
-  case List(x) => Nil
+  case List(_) => Nil
   case y :: ys => y :: init(ys)
 }
 init(List(1, 2, 3))
@@ -11,12 +13,15 @@ def reverse[T](xs: List[T]): List[T] = xs match {
 }
 reverse(List(1, 2, 3))
 
-//def reverse1[T](xs: List[T]): List[T] = {
-//  def go(x: T, xs: List[T]) : List[T] = xs match {
-//    case List() => x :: xs
-//    case y :: ys => go(y, ys) :: List(x)
-//  }
-//}
+def reverse1[T](xs: List[T]): List[T] = {
+  @tailrec
+  def go(ys: List[T], xs: List[T]) : List[T] = ys match {
+    case List() => xs
+    case z :: zs => go(zs, z :: xs)
+  }
+  go(xs.tail, List(xs.head))
+}
+reverse1(List(1, 2, 3, 4))
 
 def removeAt0[T](n: Int, xs: List[T]): List[T] = xs match {
   case List() => xs
@@ -25,7 +30,7 @@ def removeAt0[T](n: Int, xs: List[T]): List[T] = xs match {
 removeAt0(1, List('a', 'b', 'c', 'd'))
 
 def removeAt[T](n: Int, xs: List[T]) = {
-  (xs take n) ::: (xs drop n + 1)
+  (xs take n) ++ (xs drop n + 1)
 }
 removeAt(1, List('a', 'b', 'c', 'd')) // List(a, c, d)
 
