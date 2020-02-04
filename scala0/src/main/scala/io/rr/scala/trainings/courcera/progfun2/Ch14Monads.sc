@@ -1,5 +1,5 @@
 val list = List(1)
-val f = (x: Int) => x
+val f = (x: Int) => x + 1
 val g = (x: Int) => List(x)
 f(1)
 g(1)

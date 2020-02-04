@@ -1,9 +1,10 @@
-abstract class List[+T] {
+trait List[+T] {
+  def prepend[U >: T](elem: U): List[U] = Cons(elem, this)
   def isEmpty: Boolean
   def head: T
   def tail: List[T]
 }
-case class Cons[+T](h: T, t: List[T]) extends List[T] {
+case class Cons[T](h: T, t: List[T]) extends List[T] {
   override def isEmpty = false
   override def head = h
   override def tail = t

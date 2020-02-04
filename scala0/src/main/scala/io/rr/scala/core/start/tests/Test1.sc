@@ -1,11 +1,13 @@
 
-class A(a: Int)
+
 class B(val b: Int)
+class A(a: Int)
+//the same as above
 class C(private val c: Int)
-val a = new A(1)
-//a.a
 val b = new B(2)
 b.b
+val a = new A(1)
+//a.a
 val c = new C(3)
 //c.c
 
